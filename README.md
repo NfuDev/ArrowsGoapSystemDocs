@@ -25,24 +25,3 @@ Bitset changed alot of how planning is done, and introduced other concepts like 
 so this the whole idea of **Bitset**, what follows is a detailed explanation for the implementation of the system.
 
 ---
-## Bitset Implementation Reference:
-### Initialization
-
-all Bitset work is build on top of Initialization it uses to steps workflow, Init -> Run, so if the initalization step faild Bitset won't be able to run, the Initialization process depends on two Parts, universal one in the the **UGoapWorldModel** here:
-
-<img width="418" height="353" alt="Screenshot 2025-11-15 224214" src="https://github.com/user-attachments/assets/0aea7f61-d594-439d-9516-16bdb6fd7974" />
-
-in which we give every goap tag a unique id and store them in GoapIDs for global access for planners.
-The second part of the initialization is per goap Brain, **UGoapBrainComponenet** here:
-
-<img width="331" height="17" alt="Screenshot 2025-11-15 225534" src="https://github.com/user-attachments/assets/9bb2cedc-1153-4972-942f-7906a645f28b" />
-
-which maps all the availible actions for the Brain based on their effects, starting by mapping the action based on it's individual effects (makes the lookup easier), then after filling the Effects_ID which is FGoapBitset we map the action based on it's full effects, here:
-
-<img width="817" height="339" alt="Screenshot 2025-11-15 225924" src="https://github.com/user-attachments/assets/ee86c1a7-76b3-40ed-8bc0-c53f38e4fea7" />
-
-we also fill the Preconditions_ID for fast lookup in planning, here:
-
-<img width="510" height="262" alt="Screenshot 2025-11-15 230213" src="https://github.com/user-attachments/assets/6fb08087-93b4-4a25-b7b8-8d6a7febb3a3" />
-
-These are the two steps for Bitset Initialization.
